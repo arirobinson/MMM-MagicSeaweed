@@ -3,7 +3,7 @@ Module.register("MMM-MagicSeaweed",{
 	defaults: {
         apiKey: "abc123",
         spotId: 6144,
-        updateInterval: 60 * 1000,
+        updateInterval: 10 * 60 * 1000,
         width: 500,
         height: 300,
 	},
@@ -130,9 +130,9 @@ Module.register("MMM-MagicSeaweed",{
 
         self.getUpdate();
 
-        /*setInterval(function() {
+        setInterval(function() {
             self.getUpdate();
-        }, this.config.updateInterval);*/
+        }, this.config.updateInterval);
     },
 
     getUpdate: function(arr){
