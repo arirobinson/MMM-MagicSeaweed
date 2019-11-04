@@ -71,6 +71,8 @@ Module.register("MMM-MagicSeaweed",{
                     labels: timestamp,
                 },
                 options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
                     scales: {
                         xAxes: [{
                             type: 'time',
