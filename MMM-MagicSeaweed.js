@@ -44,7 +44,9 @@ Module.register("MMM-MagicSeaweed",{
                             data: minBreakingHeight,
                             borderColor: 'rgba(255, 0, 0, 0.5)',
                             type: 'line',
-                            pointRadius: 0
+                            pointRadius: 0,
+                            borderWidth: 5,
+
                         },
                         {
                             label: 'Max Height',
@@ -52,14 +54,15 @@ Module.register("MMM-MagicSeaweed",{
                             data: maxBreakingHeight,
                             borderColor: 'rgba(255, 0, 0, 0.5)',
                             type: 'line',
-                            pointRadius: 0
+                            pointRadius: 0,
+                            borderWidth: 5,
                         },
 
                         {
                             label: 'Solid Star',
                             yAxisID: 'Left',
                             data: solidRating,
-                            backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                            backgroundColor: 'rgba(54, 162, 235, 0.4)',
                         },
                         {
                             label: 'Faded Star',
