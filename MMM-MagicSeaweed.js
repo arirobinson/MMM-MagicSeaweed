@@ -19,18 +19,39 @@ Module.register("MMM-MagicSeaweed",{
             let chart1 = document.createElement("canvas");
 
             let timestamp = [];
-            let fadedRating = [];
-            let solidRating = [];
-            let minBreakingHeight = [];
-            let maxBreakingHeight = [];
+            let colours = [];
+            let heights = [];
 
             for (hour of result){
                 //console.log(hour.timestamp + ", " + new Date(hour.timestamp * 1000))
                 timestamp.push(new Date(hour.timestamp * 1000)); 
-                fadedRating.push(hour.fadedRating);
-                solidRating.push(hour.solidRating);
-                minBreakingHeight.push(hour.swell.absMinBreakingHeight);
-                maxBreakingHeight.push(hour.swell.absMaxBreakingHeight);
+
+                let height = (hour.swell.absMaxBreakingHeight + hour.swell.absMinBreakingHeight) / 2;
+                heights.push(height);
+
+
+                let colour = '';
+                let opacity = 0.5;
+
+                switch (hour.solidRating){
+                    case 1:
+                        colour = 'rgba(255, 0, 0, ' + opacity + ')';
+                        break;
+                    case 2:
+                            colour = 'rgba(255, 127, 0, ' + opacity + ')';
+                            break;
+                    case 3:
+                            colour = 'rgba(255, 255, 0, ' + opacity + ')';
+                            break;
+                    case 4:
+                            colour = 'rgba(127, 255, 0, ' + opacity + ')';
+                            break;
+                    case 5:
+                            colour = 'rgba(0, 255, 0, ' + opacity + ')';
+                            break;
+                }
+
+                colours.push(colour);
             }
 
 
@@ -39,36 +60,10 @@ Module.register("MMM-MagicSeaweed",{
                 data: {
                     datasets: [
                         {
-                            label: 'Min Height',
-                            yAxisID: 'Right',
-                            data: minBreakingHeight,
-                            borderColor: 'rgba(255, 0, 0, 0.5)',
-                            type: 'line',
-                            pointRadius: 0,
-                            borderWidth: 5,
-
-                        },
-                        {
-                            label: 'Max Height',
-                            yAxisID: 'Right',
-                            data: maxBreakingHeight,
-                            borderColor: 'rgba(255, 0, 0, 0.5)',
-                            type: 'line',
-                            pointRadius: 0,
-                            borderWidth: 5,
-                        },
-
-                        {
                             label: 'Solid Star',
                             yAxisID: 'Left',
-                            data: solidRating,
-                            backgroundColor: 'rgba(54, 162, 235, 0.4)',
-                        },
-                        {
-                            label: 'Faded Star',
-                            yAxisID: 'Left',
-                            data: fadedRating,
-                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                            data: heights,
+                            backgroundColor:  colours,//'rgba(54, 162, 235, 0.4)',
                         },
                     ],
                     labels: timestamp,
@@ -76,6 +71,9 @@ Module.register("MMM-MagicSeaweed",{
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
+                    legend: {
+                        display: false
+                    },
                     scales: {
                         xAxes: [{
                             type: 'time',
@@ -86,26 +84,11 @@ Module.register("MMM-MagicSeaweed",{
                                 unit: 'hour',
                                 stepSize: 3,
                             },
-                            stacked: true
                         }],
                         yAxes: [
                             {
                                 id: 'Left',
                                 position: 'left',
-                                stacked: true,
-                                ticks: {
-                                    beginAtZero: true,
-                                    stepSize: 1,
-                                    suggestedMax: 5,
-                                    suggestedMin: 0,
-                                    callback: function(value, index, values) {
-                                        return value + " ★";
-                                    }
-                                },
-                            },
-                            {
-                                id: 'Right',
-                                position: 'right',
                                 stacked: false,
                                 ticks: {
                                     beginAtZero: true,
