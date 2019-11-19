@@ -77,13 +77,17 @@ Module.register("MMM-MagicSeaweed",{
                     scales: {
                         xAxes: [{
                             type: 'time',
+                            distribution: 'linear',
                             time: {
                                 displayFormats: {
-                                    hour: 'ddd hA'
+                                    day: 'dddd'
                                 },
-                                unit: 'hour',
-                                stepSize: 3,
+                                unit: 'day',
+                                //stepSize: 3,
                             },
+                            /*gridLines: {
+                                color: "rgba(255,255,255, 0.5)",
+                            },*/
                         }],
                         yAxes: [
                             {
