@@ -31,7 +31,7 @@ Module.register("MMM-MagicSeaweed",{
 
 
                 let colour = '';
-                let opacity = 0.5;
+                let opacity = 1;
 
                 switch (hour.solidRating){
                     case 1:
