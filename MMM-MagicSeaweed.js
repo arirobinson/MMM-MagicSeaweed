@@ -44,7 +44,7 @@ Module.register("MMM-MagicSeaweed",{
                             colour = 'rgba(255, 255, 0, ' + opacity + ')';
                             break;
                     case 4:
-                            colour = 'rgba(127, 255, 0, ' + opacity + ')';
+                            colour = 'rgba(180, 255, 0, ' + opacity + ')';
                             break;
                     case 5:
                             colour = 'rgba(0, 255, 0, ' + opacity + ')';
